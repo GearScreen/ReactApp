@@ -12,7 +12,7 @@ const Home = () => {
     const handleDelete = (id) =>
     {
         console.log("Handle Delete id : " + id);
-        const newBlogs = blogs.filter(blog => blog.id !== id);
+        //const newBlogs = blogs.filter(blog => blog.id !== id);
         //setBlogs(newBlogs);
     }
 
@@ -23,6 +23,7 @@ const Home = () => {
     }
 
     const handleClick2 = text => {
+        setName('mario');
         console.log("Click " + text);
     }
 
@@ -48,7 +49,7 @@ const Home = () => {
     return ( 
         <div className="home">
             <h1>{title}</h1>
-            <p>{Math.random() * 10}</p>
+            <p>Random number : {Math.random() * 10}</p>
             <a href={link}>Google</a>
             <br></br>
             <br></br>

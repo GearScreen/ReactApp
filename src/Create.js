@@ -1,7 +1,10 @@
 import {useState} from "react";
 import {useHistory} from "react-router-dom";
+import useFetch from "./useFetch";
 
 const Create = () => {
+    const {data: blogs, isPending: isPendingBlogs, error} = useFetch('http://localhost:8000/blogs');
+
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
     const [author, setAuthor] = useState('mario');
@@ -12,6 +15,11 @@ const Create = () => {
         e.preventDefault();
         const blog = {title, body, author}
 
+        if (blogs.length >= 10)
+        {
+            return;
+        }     
+
         setIsPending(true);
 
         fetch('http://localhost:8000/blogs', {
@@ -21,7 +29,7 @@ const Create = () => {
         }).then(() => {
             setIsPending(false);
             console.log('New Blog Added');
-            history.push('/');
+            history.push('/'); //Home
         }).catch(err => {
             setIsPending(false);
             console.log(err);
@@ -31,6 +39,10 @@ const Create = () => {
     return (
         <div className="create">
             <h2>Add a new blog</h2>
+            {isPendingBlogs && <div>Loading...</div>}
+            {!isPendingBlogs && <div>{blogs.length}/10 blogs</div>}
+            {!isPendingBlogs && blogs.length >= 10 && <div style={{fontSize: "15px"}}>Maximum 10 blogs, delete one before adding another</div>}
+            {!isPendingBlogs && blogs.length < 10 &&
             <form onSubmit={handleSubmit}>
                 <label>Blog title:</label>
                 <input type="text" required value={title} onChange={(e) => setTitle(e.target.value)}/>
@@ -43,7 +55,8 @@ const Create = () => {
                 </select>               
                 {!isPending && <button>Add Blog</button>}
                 {isPending && <button disabled>Adding blog...</button>}
-            </form>
+            </form>}
+            {error && <div>{error}</div>}
         </div>
     );
 }
