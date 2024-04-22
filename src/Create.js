@@ -1,9 +1,22 @@
 import {useState} from "react";
 import {useHistory} from "react-router-dom";
 import useFetch from "./useFetch";
+import GetBlogs from "./GetBlogs";
 
 const Create = () => {
-    const {data: blogs, isPending: isPendingBlogs, error} = useFetch('http://localhost:8000/blogs');
+    const {data, isPending: isPendingBlogs, error} = useFetch('https://barbasoyun.github.io/JSON/db.json');
+    var blogs;
+
+    function checkFlag() {
+        if(isPendingBlogs === true) {
+           window.setTimeout(isPendingBlogs === false, 100);
+        } else {        
+          //console.log("Pending done : " + isPendingBlogs);
+          const {blogs: b} = GetBlogs(data);
+          blogs = b;
+        }
+    }
+    checkFlag();
 
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
@@ -22,7 +35,7 @@ const Create = () => {
 
         setIsPending(true);
 
-        fetch('http://localhost:8000/blogs', {
+        fetch('https://barbasoyun.github.io/JSON/db.json', {
             method: 'POST',
             headers: {"Content-Type" : "application/json"},
             body: JSON.stringify(blog),
