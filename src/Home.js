@@ -3,7 +3,7 @@ import BlogList from "./BlogList";
 import useFetch from "./useFetch";
 
 const Home = () => {
-    const {data: blogs, isPending, error} = useFetch('https://barbasoyun.github.io/JSON/db.json');
+    const {data: blogs, isPending, error} = useFetch('https://gearscreen.github.io/JSON/db.json');
 
     const [name, setName] = useState('mario');
     const title = 'App Comp';
@@ -50,7 +50,7 @@ const Home = () => {
         <div className="home">
             <h1>{title}</h1>
             <p>Random number : {Math.random() * 10}</p>
-            <a href={link}>Google</a>
+            <a href={link} rel="noreferrer" target="_blank">Google</a>
             <br></br>
             <br></br>
             <h2>Home Page</h2>

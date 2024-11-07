@@ -1,7 +1,7 @@
 {
   "name": "testlab",
   "version": "0.1.0",
-  "homepage": "https://BarbasOyun.github.io/ReactApp",
+  "homepage": "https://gearscreen.github.io/ReactApp",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
@@ -11,6 +11,7 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^5.3.4",
     "react-scripts": "5.0.1",
+    "testlab": "file:",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -40,7 +41,7 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^6.1.1",
-    "@babel/plugin-proposal-private-property-in-object": ""
+    "@babel/plugin-proposal-private-property-in-object": "",
+    "gh-pages": "^6.1.1"
   }
 }

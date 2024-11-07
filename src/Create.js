@@ -4,7 +4,7 @@ import useFetch from "./useFetch";
 import GetBlogs from "./GetBlogs";
 
 const Create = () => {
-    const {data, isPending: isPendingBlogs, error} = useFetch('https://barbasoyun.github.io/JSON/db.json');
+    const {data, isPending: isPendingBlogs, error} = useFetch('https://gearscreen.github.io/JSON/db.json');
     var blogs;
 
     function checkFlag() {
@@ -35,7 +35,7 @@ const Create = () => {
 
         setIsPending(true);
 
-        fetch('https://barbasoyun.github.io/JSON/db.json', {
+        fetch('https://gearscreen.github.io/JSON/db.json', {
             method: 'POST',
             headers: {"Content-Type" : "application/json"},
             body: JSON.stringify(blog),
